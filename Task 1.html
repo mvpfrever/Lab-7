@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prototype 3</title>
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+    <input type="text" id="input-item">
+    <button id="add-btn">Add to cart</button>
+    <ul id="list-items"></ul>
+
+    <script>
+      // Get references to HTML elements
+        const inputItem = document.getElementById('input-item');
+        const addBtn = document.getElementById('add-btn');
+        const listItems = document.getElementById('list-items');
+
+        // Load saved items from localStorage
+        const savedItems = localStorage.getItem('todoList');
+        if (savedItems) {
+            listItems.innerHTML = savedItems;
+        }
+
+        // Add event listener to Add button
+        addBtn.addEventListener('click', () => {
+            const newListItem = document.createElement('li');
+            newListItem.innerText = inputItem.value;
+            listItems.appendChild(newListItem);
+            inputItem.value = '';
+
+            // Save updated list to localStorage
+            localStorage.setItem('todoList', listItems.innerHTML);
+        });
+    </script>
+</body>
+
+</html>
